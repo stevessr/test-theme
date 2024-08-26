@@ -50,3 +50,7 @@ min_version = "0.88.0"
   [[dependencies.module]]
     path = "github.com/gohugoio/hugo-mod-jslibs"
     version = "v1.0.0"  # 示例模块版本
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

@@ -1,20 +1,37 @@
-<!--
 {{ define "main" }}
-<article>
-    <h1>{{ .Title }}</h1>
-    <p>{{ .Date.Format "January 2, 2006" }}</p>
-    <div class="content">
-        {{ .Content }}
-    </div>
-</article>
-{{ end }}
--->
-
-{{ define "main" }}
+<link rel="stylesheet" href="{{ "css/post.css" | relURL }}">
 <div class="container">
-    <article class="post-content">
-        <h1>{{ .Title }}</h1>
-        {{ .Content }}
-    </article>
+    <div class="content-layout">
+        <!-- 中间：文章内容 -->
+        <article class="post-content animate-expand">
+            <h1>{{ .Title }}</h1>
+            {{ .Content }}
+        </article>
+
+        <!-- 右侧：分类和标签 -->
+        <aside class="post-meta">
+            {{ with .Params.categories }}
+            <div class="post-meta-section">
+                <p><strong>Categories:</strong></p>
+                <ul>
+                    {{ range $index, $element := . }}
+                    <li><a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+
+            {{ with .Params.tags }}
+            <div class="post-meta-section">
+                <p><strong>Tags:</strong></p>
+                <ul>
+                    {{ range $index, $element := . }}
+                    <li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+        </aside>
+    </div>
 </div>
 {{ end }}

@@ -279,3 +279,23 @@ footer p {
     padding: 10px 20px;
     font-style: italic;
 }
+.post-meta {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.post-meta p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.post-meta a {
+    color: #007ACC;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.post-meta a:hover {
+    text-decoration: underline;
+}

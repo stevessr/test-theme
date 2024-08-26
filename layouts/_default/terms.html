@@ -1,0 +1,17 @@
+{{ define "main" }}
+<link rel="stylesheet" href="{{ "css/terms.css" | relURL }}">
+<div class="container terms-page">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="term-cards">
+        {{ $taxonomy := .Data.Terms }}
+        {{ range $taxonomy }}
+        <div class="term-card">
+            <a href="{{ .Page.Permalink }}" class="term-card-link">
+                <h2 class="term-card-title">{{ .Page.Title }}</h2>
+                <p class="term-card-count">{{ .Count }} Posts</p>
+            </a>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

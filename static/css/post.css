@@ -1,0 +1,51 @@
+.content-layout {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-content {
+    width: 75%;
+}
+
+.post-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* tags 和 categories 之间的间距 */
+    width: 20%;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    position: sticky;
+    top: 20px; /* 悬浮时距离顶部的距离 */
+    height: fit-content;
+}
+
+.post-meta-section {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-meta p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.post-meta ul {
+    list-style: none;
+    padding: 0;
+}
+
+.post-meta li {
+    margin-bottom: 8px;
+}
+
+.post-meta a {
+    color: #007ACC;
+    text-decoration: none;
+}
+
+.post-meta a:hover {
+    text-decoration: underline;
+}

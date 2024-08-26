@@ -1,0 +1,16 @@
+{{ define "main" }}
+<link rel="stylesheet" href="{{ "css/categories.css" | relURL }}">
+<div class="container categories-page">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <ul class="category-list">
+        {{ range .Pages }}
+        <li class="category-item">
+            <a href="{{ .Permalink }}" class="category-link">
+                <span class="category-title">{{ .Title }}</span>
+                <span class="category-date">{{ .Date.Format "Jan 02, 2006" }}</span>
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}

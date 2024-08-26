@@ -1,17 +1,44 @@
 {{ define "main" }}
-<section class="timeline">
-    <div class="container">
-        {{ range .Pages.ByDate.Reverse }}
-        <div class="timeline-item">
-            <div class="timeline-item-content">
-                <span class="tag">{{ .Date.Format "Jan 02, 2006" }}</span>
-                <h2>{{ .Title }}</h2>
-                <p>{{ .Summary }}</p>
-                <a href="{{ .Permalink }}" class="read-more">Read more</a>
-                <span class="circle"></span>
-            </div>
+<head>
+    <link rel="stylesheet" href="{{ "css/homepage.css" | relURL }}">
+</head>
+<div class="homepage-layout">
+    <!-- 左侧：作者信息 -->
+    <aside class="author-info">
+        <div class="author-card">
+            <img src={{ .Site.Author.png }} alt="Author Image">
+            <h2>{{ .Site.Author.name }}</h2>
+            <p>{{ .Site.Author.bio }}</p>
+        </div>
+    </aside>
+
+    <!-- 中间：posts 内容 -->
+    <section class="post-grid">
+        <!-- 显示 content/posts/ 下的所有文章 -->
+        {{ $posts := where .Site.RegularPages "Section" "posts" }}
+        {{ range $posts }}
+        <div class="post-item">
+            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+            <p>{{ .Summary }}</p>
+            <a href="{{ .Permalink }}" class="read-more">Read more</a>
         </div>
         {{ end }}
-    </div>
-</section>
+    </section>
+
+    <!-- 右侧：posts 时间栏 -->
+    <aside class="post-timeline">
+        <h3>All Posts</h3>
+        {{ $pages := where .Site.RegularPages "Section" "posts" }}
+        <p>Number of posts: {{ len $pages }}</p>
+        {{ $sortedPages := sort $pages ".Date" "desc" }}
+        <ul>
+            {{ range $sortedPages }}
+            <li>
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02, 2006" }}</time>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+            </li>
+            {{ end }}
+        </ul>
+    </aside>
+</div>
 {{ end }}
