@@ -7,6 +7,7 @@ version = "1.0.0"
 license = "MIT"
 min_version = "0.88.0"
 
+
 [params]
   # 主题自定义参数
   date_format = "2006-01-02"  # 日期格式
@@ -37,6 +38,11 @@ min_version = "0.88.0"
     name = "Contact"
     url = "/contact/"
     weight = 3
+
+  [[menu.main]]
+    name = "Donate"
+    url = "/donate/"
+    weight = 4
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]

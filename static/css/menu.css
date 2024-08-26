@@ -1,0 +1,112 @@
+/* menu.css */
+
+/* 基础菜单样式 */
+.main-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+.main-menu > li {
+    position: relative;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+}
+
+/* 下拉菜单样式 */
+.main-menu .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 160px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu .dropdown-content li {
+    width: 100%;
+}
+
+.main-menu .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.main-menu .dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+.main-menu .dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* menu.css */
+
+/* 容器样式 */
+nav {
+    text-align: center; /* 居中对齐 */
+    margin: 20px 0;
+}
+
+/* 基础菜单样式 */
+.main-menu {
+    list-style: none;
+    display: inline-flex; /* 使菜单项水平排列 */
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu > li {
+    position: relative;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+}
+
+/* 下拉菜单样式 */
+.main-menu .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 160px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu .dropdown-content li {
+    width: 100%;
+}
+
+.main-menu .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.main-menu .dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+.main-menu .dropdown-content a:hover {
+    background-color: #ddd;
+}

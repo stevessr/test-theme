@@ -1,10 +1,16 @@
 {{ define "main" }}
-<div class="container">
-    <h1>{{ .Title }}</h1>
-    <ul>
+<link rel="stylesheet" href="{{ "css/tags.css" | relURL }}">
+<div class="container tags-page">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="tag-list">
         {{ range .Pages }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a> - {{ .Date.Format "Jan 02, 2006" }}</li>
+        <div class="tag-card">
+            <a href="{{ .Permalink }}" class="tag-card-link">
+                <h2 class="tag-card-title">{{ .Title }}</h2>
+                <p class="tag-card-count">{{ .Params.count }} Posts</p>
+            </a>
+        </div>
         {{ end }}
-    </ul>
+    </div>
 </div>
 {{ end }}
