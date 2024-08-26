@@ -1,0 +1,20 @@
+<!--
+<header>
+    <h1>{{ .Site.Title }}</h1>
+    <nav>
+        {{ range .Site.Menus.main }}
+            <a href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+    </nav>
+</header>
+-->
+
+<header>
+    <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}">
+    <h1>{{ .Site.Title }}</h1>
+    <nav>
+        <a href="{{ .Site.BaseURL }}">Home</a>
+        <a href="{{ .Site.BaseURL }}about/">About</a>
+        <a href="{{ .Site.BaseURL }}contact/">Contact</a>
+    </nav>
+</header>

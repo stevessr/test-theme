@@ -1,0 +1,52 @@
+# theme.toml
+
+name = "test theme"  # 替换为您的主题名称
+author = "YourName"  # 替换为您的名字或团队名字
+description = "A Hugo theme with an AJAX-powered date timeline on the homepage."
+version = "1.0.0"
+license = "MIT"
+min_version = "0.88.0"
+
+[params]
+  # 主题自定义参数
+  date_format = "2006-01-02"  # 日期格式
+  timeline_color = "#007ACC"  # 时间轴的颜色，可以根据需要调整
+
+[features]
+  ajax = true  # 启用AJAX支持
+  timeline = true  # 启用日期时间轴显示
+
+[languages]
+  [languages.en]
+    title = "My Hugo Site"
+    subtitle = "A modern Hugo theme with a date timeline"
+    copyright = "© 2024 YourName"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 3
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  taxonomyTerm = ["HTML", "RSS"]
+  page = ["HTML"]
+  sitemap = ["XML"]
+
+[dependencies]
+  [[dependencies.module]]
+    path = "github.com/gohugoio/hugo-mod-jslibs"
+    version = "v1.0.0"  # 示例模块版本

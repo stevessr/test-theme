@@ -1,0 +1,281 @@
+/* 基础样式 */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #007ACC;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav {
+    margin-top: 1rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 时间轴样式 */
+.timeline {
+    position: relative;
+    margin: 50px 0;
+}
+
+.timeline-item {
+    margin-bottom: 30px;
+    padding-left: 20px;
+    border-left: 2px solid #007ACC;
+    position: relative;
+}
+
+.timeline-item h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #007ACC;
+}
+
+.timeline-item p {
+    margin: 5px 0;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+    background-color: #007ACC;
+    border-radius: 50%;
+}
+
+.read-more {
+    color: #007ACC;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* 底部样式 */
+footer {
+    background-color: #007ACC;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* 全局背景色和字体颜色 */
+body {
+    background-color: #f0f4f8;
+    color: #333;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 头部样式 */
+header {
+    background: linear-gradient(135deg, #6a89cc, #00d2d3);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* 时间轴容器样式 */
+.timeline {
+    position: relative;
+    padding: 50px 0;
+}
+
+.timeline-item {
+    margin-bottom: 50px;
+    position: relative;
+    padding-left: 40px;
+    border-left: 3px solid #007ACC;
+}
+
+.timeline-item-content {
+    position: relative;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.timeline-item-content:hover {
+    transform: translateY(-5px);
+}
+
+/* 日期标签样式 */
+.timeline-item-content .tag {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007ACC;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+/* 标题样式 */
+.timeline-item-content h2 {
+    font-size: 1.8rem;
+    color: #007ACC;
+    margin-bottom: 10px;
+}
+
+/* 摘要段落样式 */
+.timeline-item-content p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* 读取更多按钮样式 */
+.timeline-item-content .read-more {
+    color: #007ACC;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #007ACC;
+    padding: 5px 15px;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.timeline-item-content .read-more:hover {
+    background-color: #007ACC;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* 圆点标志 */
+.timeline-item-content .circle {
+    position: absolute;
+    left: -22px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #007ACC;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+}
+
+/* 页脚样式 */
+footer {
+    background-color: #6a89cc;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .timeline-item-content {
+        padding: 15px;
+    }
+
+    .timeline-item-content h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .timeline-item-content h2 {
+        font-size: 1.3rem;
+    }
+}
+
+
+/* 容器居中 */
+.container {
+    max-width: 800px;
+    margin: 0 auto; /* 自动左右边距使内容居中 */
+    padding: 20px;
+}
+
+/* 文章内容样式 */
+.post-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left; /* 确保文本左对齐 */
+}
+
+.post-content h1, .post-content h2, .post-content h3 {
+    color: #007ACC;
+    margin-bottom: 20px;
+}
+
+.post-content p {
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto; /* 图片居中 */
+}
+
+.post-content blockquote {
+    background-color: #f0f4f8;
+    border-left: 5px solid #007ACC;
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-style: italic;
+}

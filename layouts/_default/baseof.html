@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ partial "head.html" . }}  <!-- 引用head部分 -->
+</head>
+<body>
+    {{ block "header" . }}
+        {{ partial "header.html" . }}  <!-- 引用header部分 -->
+    {{ end }}
+
+    <main>
+        {{ block "main" . }}{{ end }}  <!-- 主体内容 -->
+    </main>
+
+    {{ block "footer" . }}
+        {{ partial "footer.html" . }}  <!-- 引用footer部分 -->
+    {{ end }}
+
+    {{ partial "scripts.html" . }}  <!-- 引用scripts部分 -->
+</body>
+</html>

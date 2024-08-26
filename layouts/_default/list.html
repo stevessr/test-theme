@@ -1,0 +1,13 @@
+{{ define "main" }}
+<section class="timeline">
+    <div class="container">
+        {{ range .Pages }}
+        <div class="timeline-item" data-date="{{ .Date }}">
+            <h2>{{ .Title }}</h2>
+            <p>{{ .Summary }}</p>
+            <a href="{{ .Permalink }}" class="read-more" data-url="{{ .RelPermalink }}">Read more</a>
+        </div>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

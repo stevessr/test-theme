@@ -1,0 +1,5 @@
+<!-- 添加主题的头部信息，如CSS、JS等 -->
+<link rel="stylesheet" href="{{ "css/styles.css" | relURL }}">
+{{ if .Site.Params.ajax }}
+<script src="{{ "js/ajax.js" | relURL }}"></script>
+{{ end }}
