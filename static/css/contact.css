@@ -1,4 +1,6 @@
 /* 容器和标题样式 */
+@import url(./combination/DonateAndContact.css);
+
 .container.contact-page {
     max-width: 800px;
     margin: 0 auto;
@@ -24,7 +26,8 @@
     color: #333;
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
     margin-top: 5px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -33,7 +36,8 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
+.contact-form input:focus,
+.contact-form textarea:focus {
     border-color: #007ACC;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
@@ -67,7 +71,8 @@
         font-size: 2em;
     }
 
-    .contact-form input, .contact-form textarea {
+    .contact-form input,
+    .contact-form textarea {
         font-size: 0.9em;
         padding: 8px;
     }
@@ -76,4 +81,8 @@
         font-size: 0.9em;
         padding: 10px;
     }
+}
+
+input , textarea {
+    background-color: #00CCB8;
 }

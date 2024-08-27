@@ -1,0 +1,26 @@
+{{ define "main" }}
+<link rel="stylesheet" href="{{ "library/list/github.css" | relURL }}">
+<div class="github-layout">
+    <div class="repo-header">
+        <h1>{{ .Site.Title }}</h1>
+        <p>{{ .Site.Params.description }}</p>
+    </div>
+
+    <div class="repo-content">
+        <h2>All Posts</h2>
+        <ul class="file-list">
+            {{ $pages := where .Site.RegularPages "Section" "posts" }}
+            {{ $sortedPages := sort $pages ".Date" "desc" }}
+            {{ range $sortedPages }}
+            <li class="file-item">
+                <div class="file-info">
+                    <a href="{{ .Permalink }}" class="file-name">{{ .Title }}</a>
+                    <span class="file-date">{{ .Date.Format "Jan 02, 2006" }}</span>
+                </div>
+                <div class="file-summary">{{ .Summary }}</div>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</div>
+{{ end }}

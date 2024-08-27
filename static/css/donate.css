@@ -1,4 +1,5 @@
 /* 容器和标题样式 */
+@import url(./combination/DonateAndContact.css);
 .container.donate-page {
     max-width: 800px;
     margin: 0 auto;

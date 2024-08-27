@@ -1,0 +1,19 @@
+{{ define "main" }}
+<link rel="stylesheet" href="{{ "css/donate.css" | relURL }}">
+<main class="donate-page">
+    <section class="donate-content">
+        <h1>{{ .Title }}</h1>
+        <article>
+            {{ .Content }}
+        </article>
+        <div class="donate-options">
+            <p>To support our work, you can donate using the following methods:</p>
+            <ul>
+                <li><strong>PayPal:</strong> <a href="https://www.paypal.com/donate">Donate via PayPal</a></li>
+                <li><strong>Bitcoin:</strong> <span>none</span></li>
+                <li><strong>Patreon:</strong> <a href="https://www.patreon.com">Support us on Patreon</a></li>
+            </ul>
+        </div>
+    </section>
+</main>
+{{ end }}

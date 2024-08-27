@@ -51,3 +51,21 @@
         padding: 5px;
     }
 }
+
+.about-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.about-page h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2E8B57;
+}
+
+.about-page article {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #333;
+}

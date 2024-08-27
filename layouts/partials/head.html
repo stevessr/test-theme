@@ -1,5 +1,8 @@
 <!-- 添加主题的头部信息，如CSS、JS等 -->
 <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}">
+<link rel="stylesheet" href="{{ "library/highlight.js/monokai.min.css" | relURL }}">
+<script src="{{ "library/highlight.js/highlight.min.js" | relURL }}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 {{ if .Site.Params.ajax }}
 <script src="{{ "js/ajax.js" | relURL }}"></script>
 {{ end }}

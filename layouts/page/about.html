@@ -1,0 +1,11 @@
+{{ define "main" }}
+<link rel="stylesheet" href="{{ "css/about.css" | relURL }}">
+<main class="about-page">
+    <section class="about-content">
+        <h1>{{ .Title }}</h1>
+        <article>
+            {{ .Content }}
+        </article>
+    </section>
+</main>
+{{ end }}

@@ -1,7 +1,6 @@
 # theme.toml
 
 name = "test theme"  # 替换为您的主题名称
-author = "YourName"  # 替换为您的名字或团队名字
 description = "A Hugo theme with an AJAX-powered date timeline on the homepage."
 version = "1.0.0"
 license = "MIT"
@@ -64,3 +63,11 @@ min_version = "0.88.0"
 [taxonomies]
   category = "categories"
   tag = "tags"
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+buildFuture = true

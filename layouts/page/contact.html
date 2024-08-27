@@ -1,0 +1,20 @@
+{{ define "main" }}
+<link rel="stylesheet" href="{{ "css/contact.css" | relURL }}">
+<main class="contact-page">
+    <section class="contact-content">
+        <h1>{{ .Title }}</h1>
+        <article>
+            {{ .Content }}
+        </article>
+        <form action="/contact/submit" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+</main>
+{{ end }}
