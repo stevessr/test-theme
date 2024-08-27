@@ -2,6 +2,14 @@
 <link rel="stylesheet" href="{{ "css/post.css" | relURL }}">
 <div class="container">
     <div class="content-layout">
+        <!-- 左侧：文章目录 -->
+        <aside class="post-toc">
+            <div class="toc-section">
+                <p><strong>文章目录</strong></p>
+                {{ .TableOfContents }}
+            </div>
+        </aside>
+
         <!-- 中间：文章内容 -->
         <article class="post-content animate-expand">
             <h1>{{ .Title }}</h1>

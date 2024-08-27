@@ -1,16 +1,18 @@
+/* Container 和 标题样式 */
 .container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
 
 .page-title {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 2.5em;
+    margin-bottom: 30px;
     text-align: center;
     color: #333;
 }
 
+/* 类别列表样式 */
 .category-list {
     list-style: none;
     padding: 0;
@@ -46,19 +48,7 @@
     color: #666;
 }
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.page-title {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    text-align: center;
-    color: #333;
-}
-
+/* 类别卡片样式 */
 .category-cards {
     display: flex;
     flex-wrap: wrap;
@@ -98,4 +88,40 @@
 .category-card-count {
     font-size: 1em;
     color: #666;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .category-card {
+        width: 45%; /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .category-card {
+        width: 100%; /* Full width for very small screens */
+        margin-bottom: 20px;
+    }
+
+    .category-link {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .category-date {
+        margin-top: 5px;
+    }
+
+    .page-title {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .category-card-title {
+        font-size: 1.3em;
+    }
+
+    .category-card-count {
+        font-size: 0.9em;
+    }
 }

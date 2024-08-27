@@ -6,9 +6,9 @@
     <!-- 左侧：作者信息 -->
     <aside class="author-info">
         <div class="author-card">
-            <img src={{ .Site.Author.avaterurl }} alt="Author Image">
-            <h2>{{ .Site.Author.name }}</h2>
-            <p>{{ .Site.Author.bio }}</p>
+            <img src="{{ .Site.Params.author.avatarurl }}" alt="Author Image">
+            <h2>{{ .Site.Params.author.name }}</h2>
+            <p>{{ .Site.Params.author.bio }}</p>
         </div>
     </aside>
 

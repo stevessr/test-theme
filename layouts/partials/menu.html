@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ "css/menu.css" | relURL }}">
 <nav>
+    <button class="hamburger-menu">&#9776;</button> <!-- 汉堡菜单图标 -->
     <ul class="main-menu">
         <li><a href="{{ .Site.BaseURL }}">Home</a></li>
         <li><a href="{{ .Site.BaseURL }}about/">About</a></li>
@@ -23,3 +24,16 @@
         </li>
     </ul>
 </nav>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const mainMenu = document.querySelector('.main-menu');
+
+    hamburgerMenu.addEventListener('click', function() {
+        mainMenu.classList.toggle('active');
+    });
+});
+
+</script>
