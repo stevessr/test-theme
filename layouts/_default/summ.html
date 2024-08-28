@@ -1,26 +1,274 @@
 {{ define "main" }}
-<link rel="stylesheet" href="{{ "library/list/github.css" | relURL }}">
-<div class="github-layout">
-    <div class="repo-header">
-        <h1>{{ .Site.Title }}</h1>
-        <p>{{ .Site.Params.description }}</p>
-    </div>
 
-    <div class="repo-content">
-        <h2>All Posts</h2>
-        <ul class="file-list">
-            {{ $pages := where .Site.RegularPages "Section" "posts" }}
-            {{ $sortedPages := sort $pages ".Date" "desc" }}
-            {{ range $sortedPages }}
-            <li class="file-item">
-                <div class="file-info">
-                    <a href="{{ .Permalink }}" class="file-name">{{ .Title }}</a>
-                    <span class="file-date">{{ .Date.Format "Jan 02, 2006" }}</span>
-                </div>
-                <div class="file-summary">{{ .Summary }}</div>
-            </li>
-            {{ end }}
-        </ul>
-    </div>
+<style>
+  .container {
+    text-align: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .controls {
+    margin: 20px 0;
+  }
+
+  .year-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .month-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 150px;
+  }
+
+  .month-label {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .heatmap-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 一周七天 */
+    grid-gap: 2px;
+  }
+
+  .heatmap-cell {
+    position: relative;
+    background-color: transparent; /* 默认无效日期为透明 */
+    border-radius: 4px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    height: 20px;
+    width: 20px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+
+  .heatmap-cell:hover .tooltip {
+    display: block;
+  }
+
+  .tooltip {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+    margin-bottom: 5px;
+  }
+
+  .level-1 {
+    background-color: #d6e685;
+  } /* 浅绿色 */
+  .level-2 {
+    background-color: #8cc665;
+  } /* 中绿色 */
+  .level-3 {
+    background-color: #44a340;
+  } /* 绿色 */
+  .level-4 {
+    background-color: #1e6823;
+  } /* 深绿色 */
+  .level-5 {
+    background-color: #196127;
+  } /* 非常深的绿色 */
+
+  .empty-cell {
+    visibility: hidden; /* 隐藏无效日期 */
+  }
+
+  select {
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .month-container {
+      width: 100%;
+      max-width: none;
+      margin-bottom: 20px;
+    }
+
+    .heatmap-container {
+      grid-gap: 4px;
+    }
+
+    .heatmap-cell {
+      height: 24px;
+      width: 24px;
+    }
+
+    .month-label {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .heatmap-cell {
+      height: 18px;
+      width: 18px;
+    }
+
+    .month-label {
+      font-size: 12px;
+    }
+  }
+</style>
+
+<div class="container">
+  <h1>博客文章热力图</h1>
+  <div class="controls">
+    <label for="year-select">选择年份:</label>
+    <select id="year-select">
+      <!-- JS will populate options -->
+    </select>
+  </div>
+  <div id="year-container" class="year-container"></div>
 </div>
+
+<script>
+  let xmlCache = null;
+
+  async function fetchXML(url) {
+    if (!xmlCache) {
+      const response = await fetch(url);
+      const text = await response.text();
+      const parser = new DOMParser();
+      xmlCache = parser.parseFromString(text, "application/xml");
+      xmlCache.normalize(); // 规范化处理
+    }
+    return xmlCache;
+  }
+
+  function getDayOfYear(date) {
+    const start = new Date(date.getFullYear(), 0, 0);
+    const diff = date - start + (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60000;
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
+  }
+
+  async function generateHeatmap(year) {
+    const xml = await fetchXML("/index.xml");
+    const items = xml.querySelectorAll("item");
+
+    const postsByDay = Array(366).fill(0); // 考虑到闰年最多366天
+    const postsDetails = Array.from({ length: 366 }, () => []);
+
+    items.forEach((item) => {
+      const pubDate = item.querySelector("pubDate").textContent;
+      const postDate = new Date(pubDate);
+      if (postDate.getFullYear() === year) {
+        const dayOfYear = getDayOfYear(postDate);
+        postsByDay[dayOfYear]++;
+        postsDetails[dayOfYear].push(item.querySelector("title").textContent);
+      }
+    });
+
+    const yearContainer = document.getElementById("year-container");
+    yearContainer.innerHTML = "";
+
+    const months = [
+      "January", "February", "March", "April", "May", "June", 
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    for (let month = 0; month < 12; month++) {
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const firstDayOfMonth = new Date(year, month, 1).getDay();
+
+      const monthContainer = document.createElement("div");
+      monthContainer.className = "month-container";
+
+      const monthLabel = document.createElement("div");
+      monthLabel.className = "month-label";
+      monthLabel.textContent = months[month];
+      monthContainer.appendChild(monthLabel);
+
+      const heatmapGrid = document.createElement("div");
+      heatmapGrid.className = "heatmap-container";
+
+      // 填充空白格子以保证月份的对齐
+      for (let i = 0; i < firstDayOfMonth; i++) {
+        const emptyCell = document.createElement("div");
+        emptyCell.className = "heatmap-cell empty-cell";
+        heatmapGrid.appendChild(emptyCell);
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayOfYear = getDayOfYear(new Date(year, month, day));
+        const cell = document.createElement("div");
+        cell.className = "heatmap-cell";
+
+        const count = postsByDay[dayOfYear];
+        if (count > 0) {
+          cell.classList.add(`level-${Math.min(count, 5)}`);
+          const tooltip = document.createElement("div");
+          tooltip.className = "tooltip";
+          tooltip.textContent = `日期: ${year}-${month + 1}-${day}\n文章: ${postsDetails[dayOfYear].join(", ")}`;
+          cell.appendChild(tooltip);
+        } else {
+          cell.style.backgroundColor = "#ddd"; // 如果该日期无文章，则为灰色
+          const tooltip = document.createElement("div");
+          tooltip.className = "tooltip";
+          tooltip.textContent = `日期: ${year}-${month + 1}-${day}`;
+          cell.appendChild(tooltip);
+        }
+
+        heatmapGrid.appendChild(cell);
+      }
+
+      // 填充剩余的空白格子以完成6行布局
+      const remainingCells = 42 - (firstDayOfMonth + daysInMonth);
+      for (let i = 0; i < remainingCells; i++) {
+        const emptyCell = document.createElement("div");
+        emptyCell.className = "heatmap-cell empty-cell";
+        heatmapGrid.appendChild(emptyCell);
+      }
+
+      monthContainer.appendChild(heatmapGrid);
+      yearContainer.appendChild(monthContainer);
+    }
+  }
+
+  function populateYearSelect() {
+    const yearSelect = document.getElementById("year-select");
+    const currentYear = new Date().getFullYear();
+    for (let year = 2000; year <= currentYear; year++) {
+      const option = document.createElement("option");
+      option.value = year;
+      option.textContent = year;
+      yearSelect.appendChild(option);
+    }
+    yearSelect.value = currentYear;
+  }
+
+  function handleChange() {
+    const year = document.getElementById("year-select").value;
+    generateHeatmap(parseInt(year));
+  }
+
+  function init() {
+    populateYearSelect();
+    const yearSelect = document.getElementById("year-select");
+    yearSelect.addEventListener("change", handleChange);
+    handleChange();
+  }
+
+  window.onload = init;
+</script>
+
 {{ end }}
